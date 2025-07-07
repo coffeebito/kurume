@@ -16,6 +16,7 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             height: 100vh;
+            height: 100dvh; /* Dynamic viewport height for mobile browsers */
             overflow: hidden;
             -webkit-user-select: none;
             user-select: none;
@@ -23,11 +24,12 @@
 
         .container {
             height: 100vh;
+            height: 100dvh; /* Dynamic viewport height */
             display: flex;
             flex-direction: column;
-            padding: 15px;
-            padding-top: max(15px, env(safe-area-inset-top));
-            padding-bottom: max(15px, env(safe-area-inset-bottom));
+            padding: 10px;
+            padding-top: max(10px, env(safe-area-inset-top));
+            padding-bottom: max(10px, env(safe-area-inset-bottom));
         }
 
         /* メイン画面 */
@@ -38,45 +40,55 @@
         }
 
         .personal-section {
-            height: 70%;
+            height: 68%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border-radius: 25px;
+            border-radius: 20px;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(15px);
-            margin-bottom: 15px;
-            padding: 25px;
+            margin-bottom: 10px;
+            padding: 15px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
+        .score-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1fr;
+            grid-template-rows: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+            max-width: 340px;
+            height: 280px;
+            align-items: center;
+        }
+
         .personal-score {
-            font-size: 5rem;
+            grid-column: 2;
+            grid-row: 1 / -1;
+            font-size: 3.5rem;
             font-weight: bold;
-            margin-bottom: 40px;
+            text-align: center;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
             background: linear-gradient(45deg, #FFD700, #FFA500);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .score-buttons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-            gap: 20px;
-            width: 100%;
-            max-width: 300px;
-            height: 280px;
+            display: contents;
         }
 
         .score-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: bold;
             border: none;
             border-radius: 20px;
@@ -85,6 +97,8 @@
             color: white;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            min-height: 80px;
+            padding: 20px 15px;
         }
 
         .score-btn.positive {
@@ -250,8 +264,8 @@
         }
 
         .player-btn {
-            padding: 15px 8px;
-            font-size: 1.2rem;
+            padding: 20px 12px;
+            font-size: 1.5rem;
             font-weight: bold;
             border: none;
             border-radius: 15px;
@@ -260,6 +274,7 @@
             color: white;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
             box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            min-height: 60px;
         }
 
         .player-btn:active {
@@ -270,53 +285,133 @@
         /* iPhone 15対応のセーフエリア */
         @supports(padding: max(0px)) {
             .container {
-                padding-left: max(15px, env(safe-area-inset-left));
-                padding-right: max(15px, env(safe-area-inset-right));
+                padding-left: max(10px, env(safe-area-inset-left));
+                padding-right: max(10px, env(safe-area-inset-right));
             }
         }
 
         /* 縦向き画面での最適化 */
         @media screen and (orientation: portrait) {
             .personal-score {
-                font-size: 4.5rem;
+                font-size: 3.2rem;
             }
             
-            .score-buttons {
+            .score-container {
                 max-width: 320px;
-                height: 300px;
+                height: 260px;
             }
             
             .score-btn {
                 font-size: 1.6rem;
+                min-height: 60px;
             }
         }
 
-        /* より小さい画面での調整 */
-        @media screen and (max-height: 700px) {
-            .personal-score {
-                font-size: 3.5rem;
-                margin-bottom: 25px;
+        /* Safari Mobile用の調整 */
+        @media screen and (max-height: 800px) {
+            .container {
+                padding: 8px;
+                padding-top: max(8px, env(safe-area-inset-top));
+                padding-bottom: max(8px, env(safe-area-inset-bottom));
             }
             
-            .score-buttons {
+            .personal-section {
+                height: 66%;
+                padding: 12px;
+                margin-bottom: 8px;
+            }
+            
+            .summary-section {
+                height: 34%;
+                padding: 12px;
+            }
+            
+            .personal-score {
+                font-size: 3rem;
+            }
+            
+            .score-container {
                 height: 240px;
-                gap: 15px;
+                gap: 10px;
+            }
+            
+            .score-btn {
+                font-size: 1.5rem;
+                min-height: 55px;
+                padding: 12px 10px;
+            }
+            
+            .player-edit-score {
+                font-size: 2.2rem;
+                margin-bottom: 12px;
+            }
+            
+            .player-btn {
+                font-size: 1.1rem;
+                min-height: 45px;
+                padding: 12px 8px;
+            }
+            
+            .edit-header {
+                margin-bottom: 12px;
+            }
+            
+            .players-edit {
+                gap: 12px;
+            }
+            
+            .player-edit-card {
+                padding: 15px;
+            }
+        }
+
+        /* 非常に小さい画面（iPhone SE等）での調整 */
+        @media screen and (max-height: 700px) {
+            .personal-score {
+                font-size: 2.8rem;
+            }
+            
+            .score-container {
+                height: 220px;
+                gap: 8px;
             }
             
             .score-btn {
                 font-size: 1.4rem;
+                min-height: 50px;
+                border-radius: 12px;
             }
             
-            .player-edit-score {
-                font-size: 2.5rem;
-                margin-bottom: 15px;
+            .summary-header {
+                margin-bottom: 8px;
+            }
+            
+            .summary-title {
+                font-size: 1.1rem;
+            }
+            
+            .edit-btn, .done-btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+            
+            .player-name {
+                font-size: 0.8rem;
+            }
+            
+            .player-score {
+                font-size: 1.3rem;
             }
         }
 
         /* タッチデバイス用の調整 */
         @media (hover: none) and (pointer: coarse) {
             .score-btn, .player-btn, .edit-btn, .done-btn {
-                min-height: 48px;
+                min-height: 44px;
+            }
+            
+            .score-btn {
+                min-height: 55px;
             }
         }
     </style>
@@ -326,14 +421,16 @@
         <!-- メイン画面 -->
         <div class="main-screen" id="mainScreen">
             <div class="personal-section">
-                <div class="personal-score" id="personalScore">0</div>
-                <div class="score-buttons">
-                    <button class="score-btn positive" onclick="updatePersonalScore(10)">+10</button>
-                    <button class="score-btn positive" onclick="updatePersonalScore(5)">+5</button>
-                    <button class="score-btn positive" onclick="updatePersonalScore(1)">+1</button>
+                <div class="score-container">
                     <button class="score-btn negative" onclick="updatePersonalScore(-10)">-10</button>
+                    <div class="personal-score" id="personalScore">0</div>
+                    <button class="score-btn positive" onclick="updatePersonalScore(10)">+10</button>
+                    
                     <button class="score-btn negative" onclick="updatePersonalScore(-5)">-5</button>
+                    <button class="score-btn positive" onclick="updatePersonalScore(5)">+5</button>
+                    
                     <button class="score-btn negative" onclick="updatePersonalScore(-1)">-1</button>
+                    <button class="score-btn positive" onclick="updatePersonalScore(1)">+1</button>
                 </div>
             </div>
             
@@ -481,18 +578,42 @@
         window.addEventListener('load', function() {
             // iOS Safari用のビューポート調整
             function setViewportHeight() {
+                // Safari用の動的ビューポート高さ対応
                 let vh = window.innerHeight * 0.01;
                 document.documentElement.style.setProperty('--vh', `${vh}px`);
+                
+                // Safari のアドレスバー対応
+                if (window.navigator.userAgent.includes('Safari') && !window.navigator.userAgent.includes('Chrome')) {
+                    document.body.style.height = `${window.innerHeight}px`;
+                }
             }
             
             setViewportHeight();
-            window.addEventListener('resize', setViewportHeight);
-            window.addEventListener('orientationchange', setViewportHeight);
             
-            // スクロール防止
+            // リサイズとオリエンテーション変更時の対応
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(setViewportHeight, 100);
+            });
+            
+            window.addEventListener('orientationchange', function() {
+                setTimeout(setViewportHeight, 500);
+            });
+            
+            // iOS Safari用のスクロール防止
             document.addEventListener('touchmove', function(e) {
+                if (e.target.closest('.players-edit')) {
+                    // 編集画面のスクロールは許可
+                    return;
+                }
                 e.preventDefault();
             }, { passive: false });
+            
+            // iOS Safari用のアドレスバー非表示
+            setTimeout(function() {
+                window.scrollTo(0, 1);
+            }, 500);
         });
     </script>
 </body>
