@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ボードゲーム得点管理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        /* メイン画面 */
+        .main-screen {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .personal-section {
+            height: 70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin-bottom: 10px;
+            padding: 20px;
+        }
+
+        .personal-score {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .score-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .score-btn {
+            padding: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .score-btn.positive {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+
+        .score-btn.negative {
+            background: linear-gradient(135deg, #f44336, #da190b);
+        }
+
+        .score-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .summary-section {
+            height: 30%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .summary-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .edit-btn {
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .edit-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .players-summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            flex: 1;
+        }
+
+        .player-card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .player-name {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .player-score {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* 編集画面 */
+        .edit-screen {
+            height: 100%;
+            display: none;
+            flex-direction: column;
+        }
+
+        .edit-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .edit-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .done-btn {
+            background: linear-gradient(135deg, #4ECDC4, #44A08D);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .players-edit {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            flex: 1;
+        }
+
+        .player-edit-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .player-edit-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .player-edit-score {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .player-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            width: 100%;
+        }
+
+        .player-btn {
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        @media screen and (orientation: landscape) and (max-height: 500px) {
+            .personal-score {
+                font-size: 3rem;
+                margin-bottom: 20px;
+            }
+            
+            .score-btn {
+                padding: 15px;
+                font-size: 1.2rem;
+            }
+            
+            .player-edit-score {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- メイン画面 -->
+        <div class="main-screen" id="mainScreen">
+            <div class="personal-section">
+                <div class="personal-score" id="personalScore">0</div>
+                <div class="score-buttons">
+                    <button class="score-btn positive" onclick="updatePersonalScore(10)">+10</button>
+                    <button class="score-btn positive" onclick="updatePersonalScore(5)">+5</button>
+                    <button class="score-btn positive" onclick="updatePersonalScore(1)">+1</button>
+                    <button class="score-btn negative" onclick="updatePersonalScore(-10)">-10</button>
+                    <button class="score-btn negative" onclick="updatePersonalScore(-5)">-5</button>
+                    <button class="score-btn negative" onclick="updatePersonalScore(-1)">-1</button>
+                </div>
+            </div>
+            
+            <div class="summary-section">
+                <div class="summary-header">
+                    <div class="summary-title">プレイヤー得点</div>
+                    <button class="edit-btn" onclick="showEditScreen()">編集</button>
+                </div>
+                <div class="players-summary" id="playersSummary">
+                    <div class="player-card">
+                        <div class="player-name">プレイヤー1</div>
+                        <div class="player-score" id="player1Score">0</div>
+                    </div>
+                    <div class="player-card">
+                        <div class="player-name">プレイヤー2</div>
+                        <div class="player-score" id="player2Score">0</div>
+                    </div>
+                    <div class="player-card">
+                        <div class="player-name">プレイヤー3</div>
+                        <div class="player-score" id="player3Score">0</div>
+                    </div>
+                    <div class="player-card">
+                        <div class="player-name">プレイヤー4</div>
+                        <div class="player-score" id="player4Score">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 編集画面 -->
+        <div class="edit-screen" id="editScreen">
+            <div class="edit-header">
+                <div class="edit-title">得点編集</div>
+                <button class="done-btn" onclick="showMainScreen()">編集終了</button>
+            </div>
+            
+            <div class="players-edit">
+                <div class="player-edit-card">
+                    <div class="player-edit-name">プレイヤー1</div>
+                    <div class="player-edit-score" id="editPlayer1Score">0</div>
+                    <div class="player-buttons">
+                        <button class="player-btn positive" onclick="updatePlayerScore(1, 10)">+10</button>
+                        <button class="player-btn positive" onclick="updatePlayerScore(1, 5)">+5</button>
+                        <button class="player-btn positive" onclick="updatePlayerScore(1, 1)">+1</button>
+                        <button class="player-btn negative" onclick="updatePlayerScore(1, -10)">-10</button>
+                        <button class="player-btn negative" onclick="updatePlayerScore(1, -5)">-5</button>
+                        <button class="player-btn negative" onclick="updatePlayerScore(1, -1)">-1</button>
+                    </div>
+                </div>
+                
+                <div class="player-edit-card">
+                    <div class="player-edit-name">プレイヤー2</div>
+                    <div class="player-edit-score" id="editPlayer2Score">0</div>
+                    <div class="player-buttons">
+                        <button class="player-btn positive" onclick="updatePlayerScore(2, 10)">+10</button>
+                        <button class="player-btn positive" onclick="updatePlayerScore(2, 5)">+5</button>
+                        <button class="player-btn positive" onclick="updatePlayerScore(2, 1)">+1</button>
+                        <button class="player-btn negative" onclick="updatePlayerScore(2, -10)">-10</button>
+                        <button class="player-btn negative" onclick="updatePlayerScore(2, -5)">-5</button>
+                        <button class="player-btn negative" onclick="updatePlayerScore(2, -1)">-1</button>
+                    </div>
+                </div>
+                
+                <div class="player-edit-card">
+                    <div class="player-edit-name">プレイヤー3</div>
+                    <div class="player-edit-score" id="editPlayer3Score">0</div>
+                    <div class="player-buttons">
+                        <button class="player-btn positive" onclick="updatePlayerScore(3, 10)">+10</button>
+                        <button class="player-btn positive" onclick="updatePlayerScore(3, 5)">+5</button>
+                        <button class="player-btn positive" onclick="updatePlayerScore(3, 1)">+1</button>
+                        <button class="player-btn negative" onclick="updatePlayerScore(3, -10)">-10</button>
+                        <button class="player-btn negative" onclick="updatePlayerScore(3, -5)">-5</button>
+                        <button class="player-btn negative" onclick="updatePlayerScore(3, -1)">-1</button>
+                    </div>
+                </div>
+                
+                <div class="player-edit-card">
+                    <div class="player-edit-name">プレイヤー4</div>
+                    <div class="player-edit-score" id="editPlayer4Score">0</div>
+                    <div class="player-buttons">
+                        <button class="player-btn positive" onclick="updatePlayerScore(4, 10)">+10</button>
+                        <button class="player-btn positive" onclick="updatePlayerScore(4, 5)">+5</button>
+                        <button class="player-btn positive" onclick="updatePlayerScore(4, 1)">+1</button>
+                        <button class="player-btn negative" onclick="updatePlayerScore(4, -10)">-10</button>
+                        <button class="player-btn negative" onclick="updatePlayerScore(4, -5)">-5</button>
+                        <button class="player-btn negative" onclick="updatePlayerScore(4, -1)">-1</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ゲーム状態をメモリで管理
+        let gameState = {
+            personalScore: 0,
+            playerScores: [0, 0, 0, 0]
+        };
+
+        // 個人得点を更新
+        function updatePersonalScore(change) {
+            gameState.personalScore += change;
+            document.getElementById('personalScore').textContent = gameState.personalScore;
+        }
+
+        // プレイヤー得点を更新
+        function updatePlayerScore(playerIndex, change) {
+            gameState.playerScores[playerIndex - 1] += change;
+            document.getElementById(`editPlayer${playerIndex}Score`).textContent = gameState.playerScores[playerIndex - 1];
+        }
+
+        // 編集画面を表示
+        function showEditScreen() {
+            document.getElementById('mainScreen').style.display = 'none';
+            document.getElementById('editScreen').style.display = 'flex';
+            
+            // 編集画面の得点を同期
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`editPlayer${i}Score`).textContent = gameState.playerScores[i - 1];
+            }
+        }
+
+        // メイン画面を表示
+        function showMainScreen() {
+            document.getElementById('editScreen').style.display = 'none';
+            document.getElementById('mainScreen').style.display = 'flex';
+            
+            // サマリー部分の得点を更新
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`player${i}Score`).textContent = gameState.playerScores[i - 1];
+            }
+        }
+
+        // ページ読み込み時の初期化
+        window.addEventListener('load', function() {
+            // 画面の向きを横向きに固定するためのメタタグを追加
+            document.addEventListener('touchstart', function() {
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(function(error) {
+                        console.log('画面の向きをロックできませんでした:', error);
+                    });
+                }
+            }, { once: true });
+        });
+    </script>
+</body>
+</html>
