@@ -40,7 +40,7 @@
         }
 
         .personal-section {
-            height: 68%;
+            height: 65%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -49,25 +49,25 @@
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(15px);
             margin-bottom: 10px;
-            padding: 15px;
+            padding: 10px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         .score-container {
             display: grid;
-            grid-template-columns: 1fr 1.5fr 1fr;
+            grid-template-columns: 1fr 1.4fr 1fr;
             grid-template-rows: repeat(3, 1fr);
-            gap: 12px;
+            gap: 10px;
             width: 100%;
             max-width: 340px;
-            height: 280px;
+            height: 240px;
             align-items: center;
         }
 
         .personal-score {
             grid-column: 2;
             grid-row: 1 / -1;
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: bold;
             text-align: center;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
@@ -293,17 +293,17 @@
         /* 縦向き画面での最適化 */
         @media screen and (orientation: portrait) {
             .personal-score {
-                font-size: 3.2rem;
+                font-size: 3rem;
             }
             
             .score-container {
                 max-width: 320px;
-                height: 260px;
+                height: 220px;
             }
             
             .score-btn {
-                font-size: 1.6rem;
-                min-height: 60px;
+                font-size: 1.5rem;
+                min-height: 55px;
             }
         }
 
@@ -316,29 +316,29 @@
             }
             
             .personal-section {
-                height: 66%;
-                padding: 12px;
+                height: 63%;
+                padding: 8px;
                 margin-bottom: 8px;
             }
             
             .summary-section {
-                height: 34%;
+                height: 37%;
                 padding: 12px;
             }
             
             .personal-score {
-                font-size: 3rem;
+                font-size: 2.8rem;
             }
             
             .score-container {
-                height: 240px;
-                gap: 10px;
+                height: 200px;
+                gap: 8px;
             }
             
             .score-btn {
-                font-size: 1.5rem;
-                min-height: 55px;
-                padding: 12px 10px;
+                font-size: 1.4rem;
+                min-height: 50px;
+                padding: 10px 8px;
             }
             
             .player-edit-score {
@@ -367,19 +367,30 @@
 
         /* 非常に小さい画面（iPhone SE等）での調整 */
         @media screen and (max-height: 700px) {
+            .personal-section {
+                height: 60%;
+                padding: 6px;
+            }
+            
+            .summary-section {
+                height: 40%;
+                padding: 10px;
+            }
+            
             .personal-score {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
             }
             
             .score-container {
-                height: 220px;
-                gap: 8px;
+                height: 180px;
+                gap: 6px;
             }
             
             .score-btn {
-                font-size: 1.4rem;
-                min-height: 50px;
+                font-size: 1.3rem;
+                min-height: 45px;
                 border-radius: 12px;
+                padding: 8px 6px;
             }
             
             .summary-header {
