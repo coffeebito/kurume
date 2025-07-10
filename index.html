@@ -471,26 +471,31 @@
             }
             
             .player-edit-score {
-                font-size: 2.2rem;
-                margin-bottom: 12px;
+                font-size: 1.6rem;
+                margin-bottom: 6px;
             }
             
             .player-btn {
-                font-size: 1.1rem;
-                min-height: 45px;
-                padding: 12px 8px;
+                font-size: 0.9rem;
+                min-height: 32px;
+                padding: 6px 4px;
             }
             
             .edit-header {
-                margin-bottom: 12px;
+                margin-bottom: 8px;
             }
             
             .players-edit {
-                gap: 12px;
+                gap: 6px;
             }
             
             .player-edit-card {
-                padding: 15px;
+                padding: 10px;
+            }
+
+            .player-edit-name {
+                font-size: 0.9rem;
+                margin-bottom: 4px;
             }
 
             .mode-toggle {
@@ -563,8 +568,46 @@
             }
             
             .edit-btn, .done-btn {
-                padding: 8px 16px;
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .edit-title {
+                font-size: 1.1rem;
+            }
+
+            .player-edit-card {
+                padding: 8px;
+            }
+
+            .player-edit-name {
                 font-size: 0.85rem;
+                margin-bottom: 3px;
+            }
+
+            .player-edit-score {
+                font-size: 1.4rem;
+                margin-bottom: 5px;
+            }
+
+            .player-buttons {
+                gap: 4px;
+                max-width: 200px;
+            }
+
+            .player-btn {
+                font-size: 0.85rem;
+                min-height: 30px;
+                padding: 4px 2px;
+                border-radius: 8px;
+            }
+
+            .players-edit {
+                gap: 4px;
+            }
+
+            .edit-header {
+                margin-bottom: 6px;
             }
             
             .player-name {
@@ -588,12 +631,16 @@
 
         /* タッチデバイス用の調整 */
         @media (hover: none) and (pointer: coarse) {
-            .score-btn, .player-btn, .edit-btn, .done-btn {
+            .score-btn, .edit-btn, .done-btn {
                 min-height: 44px;
             }
             
             .score-btn {
                 min-height: 55px;
+            }
+            
+            .player-btn {
+                min-height: 36px;
             }
         }
     </style>
@@ -755,25 +802,12 @@
         function updatePersonalScore(change) {
             gameState.personalScore += change;
             document.getElementById('personalScore').textContent = gameState.personalScore;
-            
-            // 触覚フィードバック（対応デバイスのみ）
-            if (navigator.vibrate) {
-                navigator.vibrate(50);
-            }
         }
 
         // 4人同時モードの得点を更新
         function updateMultiPlayerScore(playerIndex, change) {
             gameState.playerScores[playerIndex - 1] += change;
             document.getElementById(`multiPlayer${playerIndex}Score`).textContent = gameState.playerScores[playerIndex - 1];
-            
-            // サマリー部分も同時に更新
-            document.getElementById(`player${playerIndex}Score`).textContent = gameState.playerScores[playerIndex - 1];
-            
-            // 触覚フィードバック（対応デバイスのみ）
-            if (navigator.vibrate) {
-                navigator.vibrate(30);
-            }
         }
 
         // モード切り替え
@@ -803,11 +837,6 @@
         function updatePlayerScore(playerIndex, change) {
             gameState.playerScores[playerIndex - 1] += change;
             document.getElementById(`editPlayer${playerIndex}Score`).textContent = gameState.playerScores[playerIndex - 1];
-            
-            // 触覚フィードバック（対応デバイスのみ）
-            if (navigator.vibrate) {
-                navigator.vibrate(30);
-            }
         }
 
         // 編集画面を表示
@@ -829,13 +858,6 @@
             // サマリー部分の得点を更新
             for (let i = 1; i <= 4; i++) {
                 document.getElementById(`player${i}Score`).textContent = gameState.playerScores[i - 1];
-            }
-            
-            // 4人同時モードが有効な場合は、そちらも更新
-            if (gameState.isMultiMode) {
-                for (let i = 1; i <= 4; i++) {
-                    document.getElementById(`multiPlayer${i}Score`).textContent = gameState.playerScores[i - 1];
-                }
             }
         }
 
