@@ -116,13 +116,13 @@
             height: 65%;
             display: none;
             flex-direction: column;
+            justify-content: space-between;
             border-radius: 20px;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(15px);
             margin-bottom: 10px;
-            padding: 10px;
+            padding: 12px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            gap: 8px;
         }
 
         .player-row {
@@ -133,6 +133,8 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 8px;
+            flex: 1;
+            margin: 2px 0;
         }
 
         .player-row-score {
@@ -215,6 +217,31 @@
 
         .score-btn.negative {
             background: linear-gradient(135deg, #f44336, #da190b);
+        }
+
+        /* 数値別の色分け */
+        .btn-minus-10 {
+            background: linear-gradient(135deg, #8B0000, #B22222) !important;
+        }
+
+        .btn-minus-5 {
+            background: linear-gradient(135deg, #DC143C, #F44336) !important;
+        }
+
+        .btn-minus-1 {
+            background: linear-gradient(135deg, #FF6B6B, #FF8A80) !important;
+        }
+
+        .btn-plus-1 {
+            background: linear-gradient(135deg, #90EE90, #A5D6A7) !important;
+        }
+
+        .btn-plus-5 {
+            background: linear-gradient(135deg, #4CAF50, #66BB6A) !important;
+        }
+
+        .btn-plus-10 {
+            background: linear-gradient(135deg, #2E7D32, #388E3C) !important;
         }
 
         .score-btn:active {
@@ -431,13 +458,13 @@
             
             .multi-player-section {
                 height: 63%;
-                padding: 8px;
+                padding: 10px;
                 margin-bottom: 8px;
-                gap: 6px;
             }
             
             .player-row {
                 padding: 6px;
+                margin: 1px 0;
             }
             
             .player-row-score {
@@ -485,6 +512,25 @@
                 margin-bottom: 8px;
             }
             
+            .multi-mode-scores {
+                padding: 4px 8px;
+                margin-bottom: 6px;
+                font-size: 0.75rem;
+            }
+            
+            .multi-mode-title {
+                font-size: 0.65rem;
+                margin-bottom: 2px;
+            }
+            
+            .multi-mode-player-name {
+                font-size: 0.55rem;
+            }
+            
+            .multi-mode-player-score {
+                font-size: 0.75rem;
+            }
+            
             .players-edit {
                 gap: 6px;
             }
@@ -518,13 +564,13 @@
             
             .multi-player-section {
                 height: 60%;
-                padding: 6px;
-                gap: 4px;
+                padding: 8px;
             }
             
             .player-row {
                 padding: 4px;
                 gap: 6px;
+                margin: 1px 0;
             }
             
             .player-row-score {
@@ -618,6 +664,29 @@
                 font-size: 1.3rem;
             }
 
+            .edit-header {
+                margin-bottom: 6px;
+            }
+            
+            .multi-mode-scores {
+                padding: 3px 6px;
+                margin-bottom: 4px;
+                font-size: 0.7rem;
+            }
+            
+            .multi-mode-title {
+                font-size: 0.6rem;
+                margin-bottom: 1px;
+            }
+            
+            .multi-mode-player-name {
+                font-size: 0.5rem;
+            }
+            
+            .multi-mode-player-score {
+                font-size: 0.7rem;
+            }
+
             .mode-toggle {
                 padding: 4px;
                 margin-bottom: 4px;
@@ -655,49 +724,49 @@
             
             <div class="personal-section" id="personalSection">
                 <div class="score-container">
-                    <button class="score-btn negative" onclick="updatePersonalScore(-10)">-10</button>
+                    <button class="score-btn negative btn-minus-10" onclick="updatePersonalScore(-10)">-10</button>
                     <div class="personal-score" id="personalScore">0</div>
-                    <button class="score-btn positive" onclick="updatePersonalScore(10)">+10</button>
+                    <button class="score-btn positive btn-plus-10" onclick="updatePersonalScore(10)">+10</button>
                     
-                    <button class="score-btn negative" onclick="updatePersonalScore(-5)">-5</button>
-                    <button class="score-btn positive" onclick="updatePersonalScore(5)">+5</button>
+                    <button class="score-btn negative btn-minus-5" onclick="updatePersonalScore(-5)">-5</button>
+                    <button class="score-btn positive btn-plus-5" onclick="updatePersonalScore(5)">+5</button>
                     
-                    <button class="score-btn negative" onclick="updatePersonalScore(-1)">-1</button>
-                    <button class="score-btn positive" onclick="updatePersonalScore(1)">+1</button>
+                    <button class="score-btn negative btn-minus-1" onclick="updatePersonalScore(-1)">-1</button>
+                    <button class="score-btn positive btn-plus-1" onclick="updatePersonalScore(1)">+1</button>
                 </div>
             </div>
 
             <div class="multi-player-section" id="multiPlayerSection">
                 <div class="player-row">
-                    <button class="player-row-btn negative" onclick="updateMultiPlayerScore(1, -5)">-5</button>
-                    <button class="player-row-btn negative" onclick="updateMultiPlayerScore(1, -1)">-1</button>
+                    <button class="player-row-btn negative btn-minus-5" onclick="updateMultiPlayerScore(1, -5)">-5</button>
+                    <button class="player-row-btn negative btn-minus-1" onclick="updateMultiPlayerScore(1, -1)">-1</button>
                     <div class="player-row-score" id="multiPlayer1Score">0</div>
-                    <button class="player-row-btn positive" onclick="updateMultiPlayerScore(1, 1)">+1</button>
-                    <button class="player-row-btn positive" onclick="updateMultiPlayerScore(1, 5)">+5</button>
+                    <button class="player-row-btn positive btn-plus-1" onclick="updateMultiPlayerScore(1, 1)">+1</button>
+                    <button class="player-row-btn positive btn-plus-5" onclick="updateMultiPlayerScore(1, 5)">+5</button>
                 </div>
                 
                 <div class="player-row">
-                    <button class="player-row-btn negative" onclick="updateMultiPlayerScore(2, -5)">-5</button>
-                    <button class="player-row-btn negative" onclick="updateMultiPlayerScore(2, -1)">-1</button>
+                    <button class="player-row-btn negative btn-minus-5" onclick="updateMultiPlayerScore(2, -5)">-5</button>
+                    <button class="player-row-btn negative btn-minus-1" onclick="updateMultiPlayerScore(2, -1)">-1</button>
                     <div class="player-row-score" id="multiPlayer2Score">0</div>
-                    <button class="player-row-btn positive" onclick="updateMultiPlayerScore(2, 1)">+1</button>
-                    <button class="player-row-btn positive" onclick="updateMultiPlayerScore(2, 5)">+5</button>
+                    <button class="player-row-btn positive btn-plus-1" onclick="updateMultiPlayerScore(2, 1)">+1</button>
+                    <button class="player-row-btn positive btn-plus-5" onclick="updateMultiPlayerScore(2, 5)">+5</button>
                 </div>
                 
                 <div class="player-row">
-                    <button class="player-row-btn negative" onclick="updateMultiPlayerScore(3, -5)">-5</button>
-                    <button class="player-row-btn negative" onclick="updateMultiPlayerScore(3, -1)">-1</button>
+                    <button class="player-row-btn negative btn-minus-5" onclick="updateMultiPlayerScore(3, -5)">-5</button>
+                    <button class="player-row-btn negative btn-minus-1" onclick="updateMultiPlayerScore(3, -1)">-1</button>
                     <div class="player-row-score" id="multiPlayer3Score">0</div>
-                    <button class="player-row-btn positive" onclick="updateMultiPlayerScore(3, 1)">+1</button>
-                    <button class="player-row-btn positive" onclick="updateMultiPlayerScore(3, 5)">+5</button>
+                    <button class="player-row-btn positive btn-plus-1" onclick="updateMultiPlayerScore(3, 1)">+1</button>
+                    <button class="player-row-btn positive btn-plus-5" onclick="updateMultiPlayerScore(3, 5)">+5</button>
                 </div>
                 
                 <div class="player-row">
-                    <button class="player-row-btn negative" onclick="updateMultiPlayerScore(4, -5)">-5</button>
-                    <button class="player-row-btn negative" onclick="updateMultiPlayerScore(4, -1)">-1</button>
+                    <button class="player-row-btn negative btn-minus-5" onclick="updateMultiPlayerScore(4, -5)">-5</button>
+                    <button class="player-row-btn negative btn-minus-1" onclick="updateMultiPlayerScore(4, -1)">-1</button>
                     <div class="player-row-score" id="multiPlayer4Score">0</div>
-                    <button class="player-row-btn positive" onclick="updateMultiPlayerScore(4, 1)">+1</button>
-                    <button class="player-row-btn positive" onclick="updateMultiPlayerScore(4, 5)">+5</button>
+                    <button class="player-row-btn positive btn-plus-1" onclick="updateMultiPlayerScore(4, 1)">+1</button>
+                    <button class="player-row-btn positive btn-plus-5" onclick="updateMultiPlayerScore(4, 5)">+5</button>
                 </div>
             </div>
             
@@ -734,17 +803,39 @@
                 <button class="done-btn" onclick="showMainScreen()">編集終了</button>
             </div>
             
+            <div class="multi-mode-scores" id="multiModeScores">
+                <div class="multi-mode-title">4人同時モード記録</div>
+                <div class="multi-mode-values">
+                    <div class="multi-mode-player">
+                        <div class="multi-mode-player-name">P1</div>
+                        <div class="multi-mode-player-score" id="multiModeScore1">0</div>
+                    </div>
+                    <div class="multi-mode-player">
+                        <div class="multi-mode-player-name">P2</div>
+                        <div class="multi-mode-player-score" id="multiModeScore2">0</div>
+                    </div>
+                    <div class="multi-mode-player">
+                        <div class="multi-mode-player-name">P3</div>
+                        <div class="multi-mode-player-score" id="multiModeScore3">0</div>
+                    </div>
+                    <div class="multi-mode-player">
+                        <div class="multi-mode-player-name">P4</div>
+                        <div class="multi-mode-player-score" id="multiModeScore4">0</div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="players-edit">
                 <div class="player-edit-card">
                     <div class="player-edit-name">プレイヤー1</div>
                     <div class="player-edit-score" id="editPlayer1Score">0</div>
                     <div class="player-buttons">
-                        <button class="player-btn positive" onclick="updatePlayerScore(1, 10)">+10</button>
-                        <button class="player-btn positive" onclick="updatePlayerScore(1, 5)">+5</button>
-                        <button class="player-btn positive" onclick="updatePlayerScore(1, 1)">+1</button>
-                        <button class="player-btn negative" onclick="updatePlayerScore(1, -10)">-10</button>
-                        <button class="player-btn negative" onclick="updatePlayerScore(1, -5)">-5</button>
-                        <button class="player-btn negative" onclick="updatePlayerScore(1, -1)">-1</button>
+                        <button class="player-btn positive btn-plus-10" onclick="updatePlayerScore(1, 10)">+10</button>
+                        <button class="player-btn positive btn-plus-5" onclick="updatePlayerScore(1, 5)">+5</button>
+                        <button class="player-btn positive btn-plus-1" onclick="updatePlayerScore(1, 1)">+1</button>
+                        <button class="player-btn negative btn-minus-10" onclick="updatePlayerScore(1, -10)">-10</button>
+                        <button class="player-btn negative btn-minus-5" onclick="updatePlayerScore(1, -5)">-5</button>
+                        <button class="player-btn negative btn-minus-1" onclick="updatePlayerScore(1, -1)">-1</button>
                     </div>
                 </div>
                 
@@ -752,12 +843,12 @@
                     <div class="player-edit-name">プレイヤー2</div>
                     <div class="player-edit-score" id="editPlayer2Score">0</div>
                     <div class="player-buttons">
-                        <button class="player-btn positive" onclick="updatePlayerScore(2, 10)">+10</button>
-                        <button class="player-btn positive" onclick="updatePlayerScore(2, 5)">+5</button>
-                        <button class="player-btn positive" onclick="updatePlayerScore(2, 1)">+1</button>
-                        <button class="player-btn negative" onclick="updatePlayerScore(2, -10)">-10</button>
-                        <button class="player-btn negative" onclick="updatePlayerScore(2, -5)">-5</button>
-                        <button class="player-btn negative" onclick="updatePlayerScore(2, -1)">-1</button>
+                        <button class="player-btn positive btn-plus-10" onclick="updatePlayerScore(2, 10)">+10</button>
+                        <button class="player-btn positive btn-plus-5" onclick="updatePlayerScore(2, 5)">+5</button>
+                        <button class="player-btn positive btn-plus-1" onclick="updatePlayerScore(2, 1)">+1</button>
+                        <button class="player-btn negative btn-minus-10" onclick="updatePlayerScore(2, -10)">-10</button>
+                        <button class="player-btn negative btn-minus-5" onclick="updatePlayerScore(2, -5)">-5</button>
+                        <button class="player-btn negative btn-minus-1" onclick="updatePlayerScore(2, -1)">-1</button>
                     </div>
                 </div>
                 
@@ -765,12 +856,12 @@
                     <div class="player-edit-name">プレイヤー3</div>
                     <div class="player-edit-score" id="editPlayer3Score">0</div>
                     <div class="player-buttons">
-                        <button class="player-btn positive" onclick="updatePlayerScore(3, 10)">+10</button>
-                        <button class="player-btn positive" onclick="updatePlayerScore(3, 5)">+5</button>
-                        <button class="player-btn positive" onclick="updatePlayerScore(3, 1)">+1</button>
-                        <button class="player-btn negative" onclick="updatePlayerScore(3, -10)">-10</button>
-                        <button class="player-btn negative" onclick="updatePlayerScore(3, -5)">-5</button>
-                        <button class="player-btn negative" onclick="updatePlayerScore(3, -1)">-1</button>
+                        <button class="player-btn positive btn-plus-10" onclick="updatePlayerScore(3, 10)">+10</button>
+                        <button class="player-btn positive btn-plus-5" onclick="updatePlayerScore(3, 5)">+5</button>
+                        <button class="player-btn positive btn-plus-1" onclick="updatePlayerScore(3, 1)">+1</button>
+                        <button class="player-btn negative btn-minus-10" onclick="updatePlayerScore(3, -10)">-10</button>
+                        <button class="player-btn negative btn-minus-5" onclick="updatePlayerScore(3, -5)">-5</button>
+                        <button class="player-btn negative btn-minus-1" onclick="updatePlayerScore(3, -1)">-1</button>
                     </div>
                 </div>
                 
@@ -778,12 +869,12 @@
                     <div class="player-edit-name">プレイヤー4</div>
                     <div class="player-edit-score" id="editPlayer4Score">0</div>
                     <div class="player-buttons">
-                        <button class="player-btn positive" onclick="updatePlayerScore(4, 10)">+10</button>
-                        <button class="player-btn positive" onclick="updatePlayerScore(4, 5)">+5</button>
-                        <button class="player-btn positive" onclick="updatePlayerScore(4, 1)">+1</button>
-                        <button class="player-btn negative" onclick="updatePlayerScore(4, -10)">-10</button>
-                        <button class="player-btn negative" onclick="updatePlayerScore(4, -5)">-5</button>
-                        <button class="player-btn negative" onclick="updatePlayerScore(4, -1)">-1</button>
+                        <button class="player-btn positive btn-plus-10" onclick="updatePlayerScore(4, 10)">+10</button>
+                        <button class="player-btn positive btn-plus-5" onclick="updatePlayerScore(4, 5)">+5</button>
+                        <button class="player-btn positive btn-plus-1" onclick="updatePlayerScore(4, 1)">+1</button>
+                        <button class="player-btn negative btn-minus-10" onclick="updatePlayerScore(4, -10)">-10</button>
+                        <button class="player-btn negative btn-minus-5" onclick="updatePlayerScore(4, -5)">-5</button>
+                        <button class="player-btn negative btn-minus-1" onclick="updatePlayerScore(4, -1)">-1</button>
                     </div>
                 </div>
             </div>
@@ -843,6 +934,19 @@
         function showEditScreen() {
             document.getElementById('mainScreen').style.display = 'none';
             document.getElementById('editScreen').style.display = 'flex';
+            
+            // 4人同時モードからの移行かどうかを判別
+            const multiModeScoresDiv = document.getElementById('multiModeScores');
+            if (gameState.isMultiMode) {
+                // 4人同時モードの場合、記録された点数を表示
+                multiModeScoresDiv.classList.add('show');
+                for (let i = 1; i <= 4; i++) {
+                    document.getElementById(`multiModeScore${i}`).textContent = gameState.playerScores[i - 1];
+                }
+            } else {
+                // 個人モードの場合は非表示
+                multiModeScoresDiv.classList.remove('show');
+            }
             
             // 編集画面の得点を同期
             for (let i = 1; i <= 4; i++) {
