@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
     <title>ボードゲーム得点管理</title>
     <style>
         * {
@@ -20,6 +20,9 @@
             overflow: hidden;
             -webkit-user-select: none;
             user-select: none;
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .container {
@@ -60,6 +63,9 @@
             font-size: 0.85rem;
             transition: all 0.3s ease;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
         }
 
         .toggle-btn:active {
@@ -165,6 +171,9 @@
             box-shadow: 0 3px 10px rgba(0,0,0,0.2);
             min-height: 45px;
             padding: 8px 6px;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
         }
 
         .player-row-btn.positive {
@@ -513,22 +522,30 @@
             }
             
             .multi-mode-scores {
-                padding: 4px 8px;
+                padding: 6px 10px;
                 margin-bottom: 6px;
                 font-size: 0.75rem;
             }
             
             .multi-mode-title {
                 font-size: 0.65rem;
-                margin-bottom: 2px;
+                margin-bottom: 3px;
+            }
+            
+            .multi-mode-values {
+                padding: 3px 6px;
+            }
+            
+            .multi-mode-player {
+                gap: 3px;
             }
             
             .multi-mode-player-name {
-                font-size: 0.55rem;
+                font-size: 0.65rem;
             }
             
             .multi-mode-player-score {
-                font-size: 0.75rem;
+                font-size: 0.8rem;
             }
             
             .players-edit {
@@ -669,22 +686,30 @@
             }
             
             .multi-mode-scores {
-                padding: 3px 6px;
+                padding: 4px 8px;
                 margin-bottom: 4px;
                 font-size: 0.7rem;
             }
             
             .multi-mode-title {
                 font-size: 0.6rem;
-                margin-bottom: 1px;
+                margin-bottom: 2px;
+            }
+            
+            .multi-mode-values {
+                padding: 2px 4px;
+            }
+            
+            .multi-mode-player {
+                gap: 2px;
             }
             
             .multi-mode-player-name {
-                font-size: 0.5rem;
+                font-size: 0.6rem;
             }
             
             .multi-mode-player-score {
-                font-size: 0.7rem;
+                font-size: 0.75rem;
             }
 
             .mode-toggle {
@@ -1005,6 +1030,26 @@
             setTimeout(function() {
                 window.scrollTo(0, 1);
             }, 500);
+            
+            // ダブルタップ防止
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function(e) {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    e.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, { passive: false });
+            
+            // ダブルタップズーム防止
+            document.addEventListener('gesturestart', function(e) {
+                e.preventDefault();
+            });
+            
+            // 長押しコンテキストメニュー防止
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
         });
     </script>
 </body>
