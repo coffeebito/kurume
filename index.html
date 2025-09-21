@@ -16,7 +16,7 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             height: 100vh;
-            height: 100dvh; /* Dynamic viewport height for mobile browsers */
+            height: 100dvh;
             overflow: hidden;
             -webkit-user-select: none;
             user-select: none;
@@ -27,15 +27,14 @@
 
         .container {
             height: 100vh;
-            height: 100dvh; /* Dynamic viewport height */
+            height: 100dvh;
             display: flex;
             flex-direction: column;
-            padding: 10px;
-            padding-top: max(10px, env(safe-area-inset-top));
-            padding-bottom: max(10px, env(safe-area-inset-bottom));
+            padding: 6px;
+            padding-top: max(6px, env(safe-area-inset-top));
+            padding-bottom: max(6px, env(safe-area-inset-bottom));
         }
 
-        /* メイン画面 */
         .main-screen {
             height: 100%;
             display: flex;
@@ -45,44 +44,66 @@
         .mode-toggle {
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 8px;
-            margin-bottom: 8px;
+            border-radius: 12px;
+            padding: 3px;
+            margin-bottom: 6px;
             display: flex;
             justify-content: center;
+            gap: 3px;
         }
 
         .toggle-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: transparent;
             color: white;
-            border: none;
-            padding: 6px 16px;
-            border-radius: 12px;
+            border: 2px solid transparent;
+            padding: 6px 12px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 0.85rem;
+            font-size: 0.7rem;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
             -webkit-touch-callout: none;
+            flex: 1;
+            max-width: 100px;
+            opacity: 0.6;
+        }
+
+        .toggle-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            opacity: 1;
         }
 
         .toggle-btn:active {
             transform: scale(0.95);
         }
 
+        .section-title {
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 8px;
+            opacity: 0.9;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
         .personal-section {
-            height: 65%;
+            height: 70%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border-radius: 20px;
+            border-radius: 15px;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(15px);
-            margin-bottom: 10px;
-            padding: 10px;
+            margin-bottom: 8px;
+            padding: 8px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
@@ -90,17 +111,17 @@
             display: grid;
             grid-template-columns: 1fr 1.4fr 1fr;
             grid-template-rows: repeat(3, 1fr);
-            gap: 10px;
+            gap: 6px;
             width: 100%;
-            max-width: 340px;
-            height: 240px;
+            max-width: 300px;
+            height: 180px;
             align-items: center;
         }
 
         .personal-score {
             grid-column: 2;
             grid-row: 1 / -1;
-            font-size: 3.2rem;
+            font-size: 2.5rem;
             font-weight: bold;
             text-align: center;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
@@ -117,34 +138,39 @@
             display: contents;
         }
 
-        /* 4人同時モード */
         .multi-player-section {
-            height: 65%;
+            height: 70%;
             display: none;
             flex-direction: column;
-            justify-content: space-between;
-            border-radius: 20px;
+            border-radius: 15px;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(15px);
-            margin-bottom: 10px;
-            padding: 12px;
+            margin-bottom: 8px;
+            padding: 8px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .player-rows-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
         }
 
         .player-row {
             display: grid;
             grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
-            gap: 8px;
+            gap: 4px;
             align-items: center;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 8px;
+            border-radius: 10px;
+            padding: 4px;
             flex: 1;
-            margin: 2px 0;
+            margin: 1px 0;
         }
 
         .player-row-score {
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             font-weight: bold;
             text-align: center;
             background: linear-gradient(45deg, #FFD700, #FFA500);
@@ -160,17 +186,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             font-weight: bold;
             border: none;
-            border-radius: 12px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
             color: white;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
             box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            min-height: 45px;
-            padding: 8px 6px;
+            min-height: 35px;
+            padding: 4px 3px;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
             -webkit-touch-callout: none;
@@ -189,35 +215,21 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
-        .player-label {
-            position: absolute;
-            left: -60px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: rgba(255, 255, 255, 0.8);
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-        }
-
-        .player-row {
-            position: relative;
-        }
-
         .score-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
+            font-size: 1.6rem;
             font-weight: bold;
             border: none;
-            border-radius: 20px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             color: white;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            min-height: 80px;
-            padding: 20px 15px;
+            min-height: 55px;
+            padding: 12px 8px;
         }
 
         .score-btn.positive {
@@ -228,7 +240,6 @@
             background: linear-gradient(135deg, #f44336, #da190b);
         }
 
-        /* 数値別の色分け */
         .btn-minus-10 {
             background: linear-gradient(135deg, #8B0000, #B22222) !important;
         }
@@ -259,11 +270,11 @@
         }
 
         .summary-section {
-            height: 30%;
+            height: 25%;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(15px);
-            border-radius: 25px;
-            padding: 20px;
+            border-radius: 20px;
+            padding: 12px;
             display: flex;
             flex-direction: column;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -273,467 +284,365 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
 
         .summary-title {
-            font-size: 1.4rem;
+            font-size: 1rem;
             font-weight: bold;
         }
 
-        .edit-btn {
-            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+        .apply-btn {
+            background: linear-gradient(135deg, #4ECDC4, #44A08D);
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
+            padding: 8px 16px;
+            border-radius: 20px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 0.75rem;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        .edit-btn:active {
+        .apply-btn:active {
             transform: scale(0.95);
         }
 
         .players-summary {
             display: grid;
+            gap: 8px;
+            flex: 1;
+            align-items: stretch;
+        }
+
+        .players-summary.personal-mode {
+            grid-template-columns: 1fr;
+            justify-items: center;
+            padding: 0 20%;
+        }
+
+        .players-summary.multi-mode {
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(2, 1fr);
-            gap: 15px;
-            flex: 1;
         }
 
         .player-card {
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 15px;
+            border-radius: 8px;
+            padding: 8px;
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            gap: 6px;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .player-card.personal-mode {
+            max-width: none;
+            width: 100%;
         }
 
         .player-name {
-            font-size: 1rem;
-            margin-bottom: 8px;
+            font-size: 0.7rem;
             opacity: 0.9;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .player-score {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        /* 編集画面 */
-        .edit-screen {
-            height: 100%;
-            display: none;
-            flex-direction: column;
-        }
-
-        .edit-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding: 0 5px;
-        }
-
-        .edit-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .done-btn {
-            background: linear-gradient(135deg, #4ECDC4, #44A08D);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .done-btn:active {
-            transform: scale(0.95);
-        }
-
-        .players-edit {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .player-edit-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            border-radius: 25px;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .player-edit-name {
             font-size: 1.4rem;
             font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .player-edit-score {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             background: linear-gradient(45deg, #FFD700, #FFA500);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .player-buttons {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            width: 100%;
-            max-width: 280px;
-        }
-
-        .player-btn {
-            padding: 20px 12px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            min-height: 60px;
-        }
-
-        .player-btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-
-        /* iPhone 15対応のセーフエリア */
         @supports(padding: max(0px)) {
             .container {
-                padding-left: max(10px, env(safe-area-inset-left));
-                padding-right: max(10px, env(safe-area-inset-right));
+                padding-left: max(6px, env(safe-area-inset-left));
+                padding-right: max(6px, env(safe-area-inset-right));
             }
         }
 
-        /* 縦向き画面での最適化 */
         @media screen and (orientation: portrait) {
             .personal-score {
-                font-size: 3rem;
+                font-size: 2.2rem;
             }
             
             .score-container {
-                max-width: 320px;
-                height: 220px;
-            }
-            
-            .score-btn {
-                font-size: 1.5rem;
-                min-height: 55px;
-            }
-        }
-
-        /* Safari Mobile用の調整 */
-        @media screen and (max-height: 800px) {
-            .container {
-                padding: 8px;
-                padding-top: max(8px, env(safe-area-inset-top));
-                padding-bottom: max(8px, env(safe-area-inset-bottom));
-            }
-            
-            .personal-section {
-                height: 63%;
-                padding: 8px;
-                margin-bottom: 8px;
-            }
-            
-            .multi-player-section {
-                height: 63%;
-                padding: 10px;
-                margin-bottom: 8px;
-            }
-            
-            .player-row {
-                padding: 6px;
-                margin: 1px 0;
-            }
-            
-            .player-row-score {
-                font-size: 1.6rem;
-            }
-            
-            .player-row-btn {
-                font-size: 1.1rem;
-                min-height: 40px;
-                padding: 6px 4px;
-            }
-            
-            .summary-section {
-                height: 37%;
-                padding: 12px;
-            }
-            
-            .personal-score {
-                font-size: 2.8rem;
-            }
-            
-            .score-container {
-                height: 200px;
-                gap: 8px;
-            }
-            
-            .score-btn {
-                font-size: 1.4rem;
-                min-height: 50px;
-                padding: 10px 8px;
-            }
-            
-            .player-edit-score {
-                font-size: 1.6rem;
-                margin-bottom: 6px;
-            }
-            
-            .player-btn {
-                font-size: 0.9rem;
-                min-height: 32px;
-                padding: 6px 4px;
-            }
-            
-            .edit-header {
-                margin-bottom: 8px;
-            }
-            
-            .multi-mode-scores {
-                padding: 4px 8px;
-                margin-bottom: 6px;
-                font-size: 0.75rem;
-                gap: 6px;
-            }
-            
-            .multi-mode-title {
-                font-size: 0.65rem;
-            }
-            
-            .multi-mode-player {
-                gap: 2px;
-                font-size: 0.65rem;
-            }
-            
-            .multi-mode-player-score {
-                font-size: 0.8rem;
-            }
-            
-            .players-edit {
-                gap: 6px;
-            }
-            
-            .player-edit-card {
-                padding: 10px;
-            }
-
-            .player-edit-name {
-                font-size: 0.9rem;
-                margin-bottom: 4px;
-            }
-
-            .mode-toggle {
-                padding: 6px;
-                margin-bottom: 6px;
-            }
-            
-            .toggle-btn {
-                padding: 4px 12px;
-                font-size: 0.8rem;
-            }
-        }
-
-        /* 非常に小さい画面（iPhone SE等）での調整 */
-        @media screen and (max-height: 700px) {
-            .personal-section {
-                height: 60%;
-                padding: 6px;
-            }
-            
-            .multi-player-section {
-                height: 60%;
-                padding: 8px;
-            }
-            
-            .player-row {
-                padding: 4px;
-                gap: 6px;
-                margin: 1px 0;
-            }
-            
-            .player-row-score {
-                font-size: 1.4rem;
-            }
-            
-            .player-row-btn {
-                font-size: 1rem;
-                min-height: 35px;
-                padding: 4px 3px;
-                border-radius: 8px;
-            }
-            
-            .summary-section {
-                height: 40%;
-                padding: 10px;
-            }
-            
-            .personal-score {
-                font-size: 2.5rem;
-            }
-            
-            .score-container {
-                height: 180px;
-                gap: 6px;
+                max-width: 280px;
+                height: 160px;
             }
             
             .score-btn {
                 font-size: 1.3rem;
                 min-height: 45px;
-                border-radius: 12px;
+            }
+            
+            .player-score {
+                font-size: 1.1rem;
+            }
+            
+            .player-name {
+                font-size: 0.6rem;
+            }
+            
+            .player-card {
+                padding: 6px;
+            }
+            
+            .section-title {
+                font-size: 0.8rem;
+                margin-bottom: 6px;
+                padding: 3px 10px;
+            }
+        }
+
+        @media screen and (max-height: 800px) {
+            .container {
+                padding: 4px;
+                padding-top: max(4px, env(safe-area-inset-top));
+                padding-bottom: max(4px, env(safe-area-inset-bottom));
+            }
+            
+            .section-title {
+                font-size: 0.7rem;
+                margin-bottom: 6px;
+                padding: 3px 8px;
+            }
+            
+            .personal-section {
+                height: 72%;
+                padding: 6px;
+                margin-bottom: 6px;
+            }
+            
+            .multi-player-section {
+                height: 72%;
+                padding: 6px;
+                margin-bottom: 6px;
+            }
+            
+            .player-row {
+                padding: 3px;
+                margin: 1px 0;
+            }
+            
+            .player-row-score {
+                font-size: 1.1rem;
+            }
+            
+            .player-row-btn {
+                font-size: 0.8rem;
+                min-height: 30px;
+                padding: 3px 2px;
+            }
+            
+            .summary-section {
+                height: 28%;
+                padding: 8px;
+            }
+            
+            .personal-score {
+                font-size: 2rem;
+            }
+            
+            .score-container {
+                height: 150px;
+                gap: 4px;
+            }
+            
+            .score-btn {
+                font-size: 1.2rem;
+                min-height: 40px;
                 padding: 8px 6px;
+            }
+
+            .mode-toggle {
+                padding: 2px;
+                margin-bottom: 4px;
+            }
+            
+            .toggle-btn {
+                padding: 4px 8px;
+                font-size: 0.6rem;
+            }
+            
+            .apply-btn {
+                padding: 6px 12px;
+                font-size: 0.6rem;
+            }
+            
+            .summary-title {
+                font-size: 0.9rem;
+            }
+            
+            .player-name {
+                font-size: 0.6rem;
+            }
+            
+            .player-score {
+                font-size: 1rem;
+            }
+        }
+
+        @media screen and (max-height: 700px) {
+            .personal-section {
+                height: 75%;
+                padding: 4px;
+            }
+            
+            .multi-player-section {
+                height: 75%;
+                padding: 4px;
+            }
+            
+            .section-title {
+                font-size: 0.6rem;
+                margin-bottom: 4px;
+                padding: 2px 6px;
+            }
+            
+            .player-row {
+                padding: 2px;
+                gap: 3px;
+                margin: 1px 0;
+            }
+            
+            .player-row-score {
+                font-size: 1rem;
+            }
+            
+            .player-row-btn {
+                font-size: 0.7rem;
+                min-height: 25px;
+                padding: 2px 1px;
+                border-radius: 6px;
+            }
+            
+            .summary-section {
+                height: 25%;
+                padding: 6px;
+            }
+            
+            .personal-score {
+                font-size: 1.8rem;
+            }
+            
+            .score-container {
+                height: 120px;
+                gap: 3px;
+            }
+            
+            .score-btn {
+                font-size: 1rem;
+                min-height: 35px;
+                border-radius: 8px;
+                padding: 6px 4px;
+            }
+            
+            .summary-title {
+                font-size: 0.8rem;
+            }
+            
+            .apply-btn {
+                padding: 4px 8px;
+                font-size: 0.6rem;
+            }
+            
+            .player-name {
+                font-size: 0.55rem;
+            }
+            
+            .player-score {
+                font-size: 0.9rem;
+            }
+
+            .mode-toggle {
+                padding: 2px;
+                margin-bottom: 3px;
+            }
+            
+            .toggle-btn {
+                padding: 3px 6px;
+                font-size: 0.5rem;
+            }
+        }
+
+        @media screen and (max-width: 393px) and (max-height: 853px) {
+            .container {
+                padding: 4px;
+            }
+            
+            .personal-section, .multi-player-section {
+                height: 74%;
+            }
+            
+            .summary-section {
+                height: 26%;
+                padding: 6px;
             }
             
             .summary-header {
                 margin-bottom: 8px;
             }
             
-            .summary-title {
-                font-size: 1.1rem;
-            }
-            
-            .edit-btn, .done-btn {
-                padding: 6px 12px;
-                font-size: 0.8rem;
-            }
-            
-            .edit-title {
-                font-size: 1.1rem;
-            }
-
-            .player-edit-card {
-                padding: 8px;
-            }
-
-            .player-edit-name {
-                font-size: 0.85rem;
-                margin-bottom: 3px;
-            }
-
-            .player-edit-score {
-                font-size: 1.4rem;
-                margin-bottom: 5px;
-            }
-
-            .player-buttons {
-                gap: 4px;
-                max-width: 200px;
-            }
-
-            .player-btn {
-                font-size: 0.85rem;
-                min-height: 30px;
-                padding: 4px 2px;
-                border-radius: 8px;
-            }
-
-            .players-edit {
-                gap: 4px;
-            }
-
-            .edit-header {
-                margin-bottom: 6px;
-            }
-            
-            .player-name {
-                font-size: 0.8rem;
-            }
-            
-            .player-score {
-                font-size: 1.3rem;
-            }
-
-            .edit-header {
-                margin-bottom: 6px;
-            }
-            
-            .multi-mode-scores {
-                padding: 3px 6px;
-                margin-bottom: 4px;
-                font-size: 0.7rem;
-                gap: 4px;
-            }
-            
-            .multi-mode-title {
-                font-size: 0.6rem;
-            }
-            
-            .multi-mode-player {
-                gap: 2px;
-                font-size: 0.6rem;
-            }
-            
-            .multi-mode-player-score {
-                font-size: 0.75rem;
-            }
-
-            .mode-toggle {
+            .player-card {
                 padding: 4px;
-                margin-bottom: 4px;
+                gap: 3px;
             }
             
-            .toggle-btn {
-                padding: 3px 10px;
-                font-size: 0.75rem;
+            .players-summary {
+                gap: 4px;
+            }
+            
+            .apply-btn {
+                padding: 4px 8px;
+                font-size: 0.6rem;
+            }
+            
+            .summary-title {
+                font-size: 0.8rem;
+            }
+            
+            .section-title {
+                font-size: 0.7rem;
+                margin-bottom: 4px;
+                padding: 2px 6px;
             }
         }
 
-        /* タッチデバイス用の調整 */
         @media (hover: none) and (pointer: coarse) {
-            .score-btn, .edit-btn, .done-btn {
+            .apply-btn {
                 min-height: 44px;
             }
             
             .score-btn {
                 min-height: 55px;
             }
-            
-            .player-btn {
-                min-height: 36px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- メイン画面 -->
         <div class="main-screen" id="mainScreen">
             <div class="mode-toggle">
-                <button class="toggle-btn" id="toggleBtn" onclick="toggleMode()">4人同時ver</button>
+                <button class="toggle-btn active" id="personalModeBtn" onclick="switchToPersonalMode()">個人モード</button>
+                <button class="toggle-btn" id="multiModeBtn" onclick="switchToMultiMode()">4人同時ver</button>
             </div>
             
             <div class="personal-section" id="personalSection">
+                <div class="section-title">プレイヤー暫定点</div>
                 <div class="score-container">
                     <button class="score-btn negative btn-minus-10" onclick="updatePersonalScore(-10)">-10</button>
                     <div class="personal-score" id="personalScore">0</div>
@@ -748,130 +657,70 @@
             </div>
 
             <div class="multi-player-section" id="multiPlayerSection">
-                <div class="player-row">
-                    <button class="player-row-btn negative btn-minus-5" onclick="updateMultiPlayerScore(1, -5)">-5</button>
-                    <button class="player-row-btn negative btn-minus-1" onclick="updateMultiPlayerScore(1, -1)">-1</button>
-                    <div class="player-row-score" id="multiPlayer1Score">0</div>
-                    <button class="player-row-btn positive btn-plus-1" onclick="updateMultiPlayerScore(1, 1)">+1</button>
-                    <button class="player-row-btn positive btn-plus-5" onclick="updateMultiPlayerScore(1, 5)">+5</button>
-                </div>
-                
-                <div class="player-row">
-                    <button class="player-row-btn negative btn-minus-5" onclick="updateMultiPlayerScore(2, -5)">-5</button>
-                    <button class="player-row-btn negative btn-minus-1" onclick="updateMultiPlayerScore(2, -1)">-1</button>
-                    <div class="player-row-score" id="multiPlayer2Score">0</div>
-                    <button class="player-row-btn positive btn-plus-1" onclick="updateMultiPlayerScore(2, 1)">+1</button>
-                    <button class="player-row-btn positive btn-plus-5" onclick="updateMultiPlayerScore(2, 5)">+5</button>
-                </div>
-                
-                <div class="player-row">
-                    <button class="player-row-btn negative btn-minus-5" onclick="updateMultiPlayerScore(3, -5)">-5</button>
-                    <button class="player-row-btn negative btn-minus-1" onclick="updateMultiPlayerScore(3, -1)">-1</button>
-                    <div class="player-row-score" id="multiPlayer3Score">0</div>
-                    <button class="player-row-btn positive btn-plus-1" onclick="updateMultiPlayerScore(3, 1)">+1</button>
-                    <button class="player-row-btn positive btn-plus-5" onclick="updateMultiPlayerScore(3, 5)">+5</button>
-                </div>
-                
-                <div class="player-row">
-                    <button class="player-row-btn negative btn-minus-5" onclick="updateMultiPlayerScore(4, -5)">-5</button>
-                    <button class="player-row-btn negative btn-minus-1" onclick="updateMultiPlayerScore(4, -1)">-1</button>
-                    <div class="player-row-score" id="multiPlayer4Score">0</div>
-                    <button class="player-row-btn positive btn-plus-1" onclick="updateMultiPlayerScore(4, 1)">+1</button>
-                    <button class="player-row-btn positive btn-plus-5" onclick="updateMultiPlayerScore(4, 5)">+5</button>
+                <div class="section-title">プレイヤー暫定点</div>
+                <div class="player-rows-container">
+                    <div class="player-row">
+                        <button class="player-row-btn negative btn-minus-5" onclick="updateMultiPlayerScore(1, -5)">-5</button>
+                        <button class="player-row-btn negative btn-minus-1" onclick="updateMultiPlayerScore(1, -1)">-1</button>
+                        <div class="player-row-score" id="multiPlayer1Score">0</div>
+                        <button class="player-row-btn positive btn-plus-1" onclick="updateMultiPlayerScore(1, 1)">+1</button>
+                        <button class="player-row-btn positive btn-plus-5" onclick="updateMultiPlayerScore(1, 5)">+5</button>
+                    </div>
+                    
+                    <div class="player-row">
+                        <button class="player-row-btn negative btn-minus-5" onclick="updateMultiPlayerScore(2, -5)">-5</button>
+                        <button class="player-row-btn negative btn-minus-1" onclick="updateMultiPlayerScore(2, -1)">-1</button>
+                        <div class="player-row-score" id="multiPlayer2Score">0</div>
+                        <button class="player-row-btn positive btn-plus-1" onclick="updateMultiPlayerScore(2, 1)">+1</button>
+                        <button class="player-row-btn positive btn-plus-5" onclick="updateMultiPlayerScore(2, 5)">+5</button>
+                    </div>
+                    
+                    <div class="player-row">
+                        <button class="player-row-btn negative btn-minus-5" onclick="updateMultiPlayerScore(3, -5)">-5</button>
+                        <button class="player-row-btn negative btn-minus-1" onclick="updateMultiPlayerScore(3, -1)">-1</button>
+                        <div class="player-row-score" id="multiPlayer3Score">0</div>
+                        <button class="player-row-btn positive btn-plus-1" onclick="updateMultiPlayerScore(3, 1)">+1</button>
+                        <button class="player-row-btn positive btn-plus-5" onclick="updateMultiPlayerScore(3, 5)">+5</button>
+                    </div>
+                    
+                    <div class="player-row">
+                        <button class="player-row-btn negative btn-minus-5" onclick="updateMultiPlayerScore(4, -5)">-5</button>
+                        <button class="player-row-btn negative btn-minus-1" onclick="updateMultiPlayerScore(4, -1)">-1</button>
+                        <div class="player-row-score" id="multiPlayer4Score">0</div>
+                        <button class="player-row-btn positive btn-plus-1" onclick="updateMultiPlayerScore(4, 1)">+1</button>
+                        <button class="player-row-btn positive btn-plus-5" onclick="updateMultiPlayerScore(4, 5)">+5</button>
+                    </div>
                 </div>
             </div>
             
             <div class="summary-section">
                 <div class="summary-header">
-                    <div class="summary-title">プレイヤー得点</div>
-                    <button class="edit-btn" onclick="showEditScreen()">編集</button>
+                    <div class="summary-title">プレイヤー確定点</div>
+                    <button class="apply-btn" onclick="applyScores()">反映</button>
                 </div>
-                <div class="players-summary" id="playersSummary">
-                    <div class="player-card">
+                <div class="players-summary personal-mode" id="playersSummary">
+                    <!-- 個人モード用 -->
+                    <div class="player-card personal-mode" id="personalPlayerCard">
                         <div class="player-name">プレイヤー1</div>
                         <div class="player-score" id="player1Score">0</div>
                     </div>
-                    <div class="player-card">
+                    
+                    <!-- 4人モード用 -->
+                    <div class="player-card" id="multiPlayer1Card" style="display: none;">
+                        <div class="player-name">プレイヤー1</div>
+                        <div class="player-score" id="multiPlayer1TotalScore">0</div>
+                    </div>
+                    <div class="player-card" id="multiPlayer2Card" style="display: none;">
                         <div class="player-name">プレイヤー2</div>
-                        <div class="player-score" id="player2Score">0</div>
+                        <div class="player-score" id="multiPlayer2TotalScore">0</div>
                     </div>
-                    <div class="player-card">
+                    <div class="player-card" id="multiPlayer3Card" style="display: none;">
                         <div class="player-name">プレイヤー3</div>
-                        <div class="player-score" id="player3Score">0</div>
+                        <div class="player-score" id="multiPlayer3TotalScore">0</div>
                     </div>
-                    <div class="player-card">
+                    <div class="player-card" id="multiPlayer4Card" style="display: none;">
                         <div class="player-name">プレイヤー4</div>
-                        <div class="player-score" id="player4Score">0</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 編集画面 -->
-        <div class="edit-screen" id="editScreen">
-            <div class="edit-header">
-                <div class="edit-title">得点編集</div>
-                <button class="done-btn" onclick="showMainScreen()">編集終了</button>
-            </div>
-            
-            <div class="multi-mode-scores" id="multiModeScores">
-                <span class="multi-mode-title">4人同時モード記録:</span>
-                <span class="multi-mode-player">P1 <span class="multi-mode-player-score" id="multiModeScore1">0</span></span>
-                <span class="multi-mode-player">P2 <span class="multi-mode-player-score" id="multiModeScore2">0</span></span>
-                <span class="multi-mode-player">P3 <span class="multi-mode-player-score" id="multiModeScore3">0</span></span>
-                <span class="multi-mode-player">P4 <span class="multi-mode-player-score" id="multiModeScore4">0</span></span>
-            </div>
-            
-            <div class="players-edit">
-                <div class="player-edit-card">
-                    <div class="player-edit-name">プレイヤー1</div>
-                    <div class="player-edit-score" id="editPlayer1Score">0</div>
-                    <div class="player-buttons">
-                        <button class="player-btn positive btn-plus-10" onclick="updatePlayerScore(1, 10)">+10</button>
-                        <button class="player-btn positive btn-plus-5" onclick="updatePlayerScore(1, 5)">+5</button>
-                        <button class="player-btn positive btn-plus-1" onclick="updatePlayerScore(1, 1)">+1</button>
-                        <button class="player-btn negative btn-minus-10" onclick="updatePlayerScore(1, -10)">-10</button>
-                        <button class="player-btn negative btn-minus-5" onclick="updatePlayerScore(1, -5)">-5</button>
-                        <button class="player-btn negative btn-minus-1" onclick="updatePlayerScore(1, -1)">-1</button>
-                    </div>
-                </div>
-                
-                <div class="player-edit-card">
-                    <div class="player-edit-name">プレイヤー2</div>
-                    <div class="player-edit-score" id="editPlayer2Score">0</div>
-                    <div class="player-buttons">
-                        <button class="player-btn positive btn-plus-10" onclick="updatePlayerScore(2, 10)">+10</button>
-                        <button class="player-btn positive btn-plus-5" onclick="updatePlayerScore(2, 5)">+5</button>
-                        <button class="player-btn positive btn-plus-1" onclick="updatePlayerScore(2, 1)">+1</button>
-                        <button class="player-btn negative btn-minus-10" onclick="updatePlayerScore(2, -10)">-10</button>
-                        <button class="player-btn negative btn-minus-5" onclick="updatePlayerScore(2, -5)">-5</button>
-                        <button class="player-btn negative btn-minus-1" onclick="updatePlayerScore(2, -1)">-1</button>
-                    </div>
-                </div>
-                
-                <div class="player-edit-card">
-                    <div class="player-edit-name">プレイヤー3</div>
-                    <div class="player-edit-score" id="editPlayer3Score">0</div>
-                    <div class="player-buttons">
-                        <button class="player-btn positive btn-plus-10" onclick="updatePlayerScore(3, 10)">+10</button>
-                        <button class="player-btn positive btn-plus-5" onclick="updatePlayerScore(3, 5)">+5</button>
-                        <button class="player-btn positive btn-plus-1" onclick="updatePlayerScore(3, 1)">+1</button>
-                        <button class="player-btn negative btn-minus-10" onclick="updatePlayerScore(3, -10)">-10</button>
-                        <button class="player-btn negative btn-minus-5" onclick="updatePlayerScore(3, -5)">-5</button>
-                        <button class="player-btn negative btn-minus-1" onclick="updatePlayerScore(3, -1)">-1</button>
-                    </div>
-                </div>
-                
-                <div class="player-edit-card">
-                    <div class="player-edit-name">プレイヤー4</div>
-                    <div class="player-edit-score" id="editPlayer4Score">0</div>
-                    <div class="player-buttons">
-                        <button class="player-btn positive btn-plus-10" onclick="updatePlayerScore(4, 10)">+10</button>
-                        <button class="player-btn positive btn-plus-5" onclick="updatePlayerScore(4, 5)">+5</button>
-                        <button class="player-btn positive btn-plus-1" onclick="updatePlayerScore(4, 1)">+1</button>
-                        <button class="player-btn negative btn-minus-10" onclick="updatePlayerScore(4, -10)">-10</button>
-                        <button class="player-btn negative btn-minus-5" onclick="updatePlayerScore(4, -5)">-5</button>
-                        <button class="player-btn negative btn-minus-1" onclick="updatePlayerScore(4, -1)">-1</button>
+                        <div class="player-score" id="multiPlayer4TotalScore">0</div>
                     </div>
                 </div>
             </div>
@@ -879,98 +728,153 @@
     </div>
 
     <script>
-        // ゲーム状態をメモリで管理
         let gameState = {
             personalScore: 0,
             playerScores: [0, 0, 0, 0],
+            playerTotalScores: [0, 0, 0, 0],
             isMultiMode: false
         };
 
-        // 個人得点を更新
         function updatePersonalScore(change) {
             gameState.personalScore += change;
             document.getElementById('personalScore').textContent = gameState.personalScore;
         }
 
-        // 4人同時モードの得点を更新
         function updateMultiPlayerScore(playerIndex, change) {
             gameState.playerScores[playerIndex - 1] += change;
             document.getElementById(`multiPlayer${playerIndex}Score`).textContent = gameState.playerScores[playerIndex - 1];
         }
 
-        // モード切り替え
-        function toggleMode() {
-            gameState.isMultiMode = !gameState.isMultiMode;
+        function switchToPersonalMode() {
+            if (!gameState.isMultiMode) return;
+            
+            // 全てのデータをリセット
+            resetAllScores();
+            
+            gameState.isMultiMode = false;
+            updateModeDisplay();
+        }
+
+        function switchToMultiMode() {
+            if (gameState.isMultiMode) return;
+            
+            // 全てのデータをリセット
+            resetAllScores();
+            
+            gameState.isMultiMode = true;
+            updateModeDisplay();
+        }
+
+        function resetAllScores() {
+            // 全ての得点データをリセット
+            gameState.personalScore = 0;
+            gameState.playerScores = [0, 0, 0, 0];
+            gameState.playerTotalScores = [0, 0, 0, 0];
+            
+            // 画面表示をリセット
+            document.getElementById('personalScore').textContent = '0';
+            document.getElementById('player1Score').textContent = '0';
+            
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`multiPlayer${i}Score`).textContent = '0';
+                document.getElementById(`multiPlayer${i}TotalScore`).textContent = '0';
+            }
+        }
+
+        function updateModeDisplay() {
             const personalSection = document.getElementById('personalSection');
             const multiPlayerSection = document.getElementById('multiPlayerSection');
-            const toggleBtn = document.getElementById('toggleBtn');
+            const personalModeBtn = document.getElementById('personalModeBtn');
+            const multiModeBtn = document.getElementById('multiModeBtn');
+            const playersSummary = document.getElementById('playersSummary');
+            
+            const personalPlayerCard = document.getElementById('personalPlayerCard');
+            const multiPlayerCards = [
+                document.getElementById('multiPlayer1Card'),
+                document.getElementById('multiPlayer2Card'),
+                document.getElementById('multiPlayer3Card'),
+                document.getElementById('multiPlayer4Card')
+            ];
             
             if (gameState.isMultiMode) {
                 personalSection.style.display = 'none';
                 multiPlayerSection.style.display = 'flex';
-                toggleBtn.textContent = '個人モード';
                 
-                // 4人同時モードの得点を同期
+                personalModeBtn.classList.remove('active');
+                multiModeBtn.classList.add('active');
+                
+                playersSummary.className = 'players-summary multi-mode';
+                personalPlayerCard.style.display = 'none';
+                multiPlayerCards.forEach(card => card.style.display = 'flex');
+                
                 for (let i = 1; i <= 4; i++) {
                     document.getElementById(`multiPlayer${i}Score`).textContent = gameState.playerScores[i - 1];
+                    document.getElementById(`multiPlayer${i}TotalScore`).textContent = gameState.playerTotalScores[i - 1];
                 }
             } else {
                 personalSection.style.display = 'flex';
                 multiPlayerSection.style.display = 'none';
-                toggleBtn.textContent = '4人同時ver';
+                
+                personalModeBtn.classList.add('active');
+                multiModeBtn.classList.remove('active');
+                
+                playersSummary.className = 'players-summary personal-mode';
+                personalPlayerCard.style.display = 'flex';
+                multiPlayerCards.forEach(card => card.style.display = 'none');
+                
+                document.getElementById('player1Score').textContent = gameState.playerTotalScores[0];
             }
         }
 
-        // プレイヤー得点を更新（編集画面用）
-        function updatePlayerScore(playerIndex, change) {
-            gameState.playerScores[playerIndex - 1] += change;
-            document.getElementById(`editPlayer${playerIndex}Score`).textContent = gameState.playerScores[playerIndex - 1];
-        }
-
-        // 編集画面を表示
-        function showEditScreen() {
-            document.getElementById('mainScreen').style.display = 'none';
-            document.getElementById('editScreen').style.display = 'flex';
-            
-            // 4人同時モードからの移行かどうかを判別
-            const multiModeScoresDiv = document.getElementById('multiModeScores');
+        function applyScores() {
             if (gameState.isMultiMode) {
-                // 4人同時モードの場合、記録された点数を表示
-                multiModeScoresDiv.classList.add('show');
+                // 4人モードの場合：画面上部の各プレイヤー得点をプレイヤー得点に加算
                 for (let i = 1; i <= 4; i++) {
-                    document.getElementById(`multiModeScore${i}`).textContent = gameState.playerScores[i - 1];
+                    const currentScore = gameState.playerScores[i - 1];
+                    const addValue = currentScore < 0 ? 0 : currentScore; // 負の数は0に
+                    gameState.playerTotalScores[i - 1] += addValue;
+                    document.getElementById(`multiPlayer${i}TotalScore`).textContent = gameState.playerTotalScores[i - 1];
+                    
+                    // 画面上部の得点をリセット
+                    gameState.playerScores[i - 1] = 0;
+                    document.getElementById(`multiPlayer${i}Score`).textContent = 0;
                 }
             } else {
-                // 個人モードの場合は非表示
-                multiModeScoresDiv.classList.remove('show');
-            }
-            
-            // 編集画面の得点を同期
-            for (let i = 1; i <= 4; i++) {
-                document.getElementById(`editPlayer${i}Score`).textContent = gameState.playerScores[i - 1];
-            }
-        }
-
-        // メイン画面を表示
-        function showMainScreen() {
-            document.getElementById('editScreen').style.display = 'none';
-            document.getElementById('mainScreen').style.display = 'flex';
-            
-            // サマリー部分の得点を更新
-            for (let i = 1; i <= 4; i++) {
-                document.getElementById(`player${i}Score`).textContent = gameState.playerScores[i - 1];
+                // 個人モードの場合：画面上部の個人得点をプレイヤー得点に加算
+                const currentScore = gameState.personalScore;
+                const addValue = currentScore < 0 ? 0 : currentScore; // 負の数は0に
+                gameState.playerTotalScores[0] += addValue;
+                document.getElementById('player1Score').textContent = gameState.playerTotalScores[0];
+                
+                // 画面上部の得点をリセット
+                gameState.personalScore = 0;
+                document.getElementById('personalScore').textContent = 0;
             }
         }
 
-        // ページ読み込み時の初期化
+        function toggleMode() {
+            switchToMultiMode();
+        }
+
         window.addEventListener('load', function() {
-            // iOS Safari用のビューポート調整
+            updateModeDisplay();
+            
+            gameState.personalScore = 0;
+            gameState.playerScores = [0, 0, 0, 0];
+            gameState.playerTotalScores = [0, 0, 0, 0];
+            
+            document.getElementById('personalScore').textContent = '0';
+            document.getElementById('player1Score').textContent = '0';
+            
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`multiPlayer${i}Score`).textContent = '0';
+                document.getElementById(`multiPlayer${i}TotalScore`).textContent = '0';
+            }
+            
             function setViewportHeight() {
-                // Safari用の動的ビューポート高さ対応
                 let vh = window.innerHeight * 0.01;
                 document.documentElement.style.setProperty('--vh', `${vh}px`);
                 
-                // Safari のアドレスバー対応
                 if (window.navigator.userAgent.includes('Safari') && !window.navigator.userAgent.includes('Chrome')) {
                     document.body.style.height = `${window.innerHeight}px`;
                 }
@@ -978,7 +882,6 @@
             
             setViewportHeight();
             
-            // リサイズとオリエンテーション変更時の対応
             let resizeTimer;
             window.addEventListener('resize', function() {
                 clearTimeout(resizeTimer);
@@ -989,21 +892,14 @@
                 setTimeout(setViewportHeight, 500);
             });
             
-            // iOS Safari用のスクロール防止
             document.addEventListener('touchmove', function(e) {
-                if (e.target.closest('.players-edit')) {
-                    // 編集画面のスクロールは許可
-                    return;
-                }
                 e.preventDefault();
             }, { passive: false });
             
-            // iOS Safari用のアドレスバー非表示
             setTimeout(function() {
                 window.scrollTo(0, 1);
             }, 500);
             
-            // ダブルタップ防止
             let lastTouchEnd = 0;
             document.addEventListener('touchend', function(e) {
                 const now = (new Date()).getTime();
@@ -1013,12 +909,10 @@
                 lastTouchEnd = now;
             }, { passive: false });
             
-            // ダブルタップズーム防止
             document.addEventListener('gesturestart', function(e) {
                 e.preventDefault();
             });
             
-            // 長押しコンテキストメニュー防止
             document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
             });
